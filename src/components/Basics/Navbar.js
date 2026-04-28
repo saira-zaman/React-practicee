@@ -1,7 +1,8 @@
 import React from "react";
 
-const Navbar = ({ filterItem, menuList }) => {
+const Navbar = ({ filterItem, menuList = [] }) => {
   return (
+  <>
     <nav className="navbar">
       <div className="btn-group">
         {menuList.map((curElem) => {
@@ -16,6 +17,8 @@ const Navbar = ({ filterItem, menuList }) => {
         })}
       </div>
     </nav>
+  </>
+  
   );
 };
 
