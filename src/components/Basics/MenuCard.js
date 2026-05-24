@@ -6,7 +6,7 @@ const MenuCard = ({menuData,addToCart}) => {
     <>
     <section className="main-card--container">
     {menuData.map((curElem) => {
-      const {id, name,category, image, description} = curElem;
+      const {id, name, image, description} = curElem;
      return (
             <>
             <span className="card-id">{id}</span>
