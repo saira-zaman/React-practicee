@@ -9,6 +9,7 @@ import Cart from "./Cart";
 import Toast from "./Toast";
 import About from "./About";
 import Contact from "./Contact";
+import OrderConfirmation from "./OrderConfirmation";
 
 const uniqueList = [
   ...new Set(
@@ -27,6 +28,7 @@ const Restaurant = () => {
   const [user, setUser] = useState(null);
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [showOrderConfirmation, setShowOrderConfirmation] = useState(false);
 
   const filterItem = (category) => {
     if (category === "All") {
@@ -76,6 +78,29 @@ const Restaurant = () => {
     setShowToast(true);
   };
 
+  // 📦 CHECKOUT HANDLER
+  const handleCheckout = () => {
+    if (cart.length === 0) {
+      setToastMessage("❌ Your cart is empty!");
+      setShowToast(true);
+      return;
+    }
+    if (!user) {
+      setToastMessage("⚠️ Please sign in to place an order!");
+      setShowToast(true);
+      return;
+    }
+    setShowOrderConfirmation(true);
+  };
+
+  // ✅ ORDER CONFIRMATION HANDLER
+  const handleOrderConfirmed = () => {
+    setToastMessage("✅ Order placed successfully! Preparing your food...");
+    setShowToast(true);
+    setCart([]);
+    setShowOrderConfirmation(false);
+  };
+
   return (
     <>
       {/* HEADER WITH NAVIGATION */}
@@ -111,7 +136,16 @@ const Restaurant = () => {
       <Contact />
 
       {/* CART */}
-      <Cart cart={cart} setCart={setCart} />
+      <Cart cart={cart} setCart={setCart} onCheckout={handleCheckout} />
+
+      {/* ORDER CONFIRMATION MODAL */}
+      <OrderConfirmation
+        isOpen={showOrderConfirmation}
+        cart={cart}
+        user={user}
+        onConfirm={handleOrderConfirmed}
+        onClose={() => setShowOrderConfirmation(false)}
+      />
 
       {/* FOOTER */}
       <Footer />
