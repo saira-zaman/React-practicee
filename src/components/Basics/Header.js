@@ -1,14 +1,33 @@
 import React, { useState } from "react";
 
-const Header = ({ user, onLogin, onLogout }) => {
+const Header = ({ user, onLogin, onLogout, menuList = [], onFilterChange }) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [showMenuDropdown, setShowMenuDropdown] = useState(false);
 
   const handleLogin = () => {
     if (formData.email && formData.password) {
       onLogin(formData.email);
       setFormData({ email: "", password: "" });
       setShowLoginModal(false);
+    }
+  };
+
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleFilterClick = (category) => {
+    onFilterChange(category);
+    setShowMenuDropdown(false);
+    // Scroll to menu
+    const menuElement = document.getElementById("menu");
+    if (menuElement) {
+      menuElement.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -27,10 +46,52 @@ const Header = ({ user, onLogin, onLogout }) => {
 
           {/* CENTER - NAV LINKS */}
           <nav className="header-nav">
-            <a href="#home" className="nav-link active">Home</a>
-            <a href="#menu" className="nav-link">Menu</a>
-            <a href="#about" className="nav-link">About</a>
-            <a href="#contact" className="nav-link">Contact</a>
+            <a
+              href="/"
+              onClick={(e) => handleNavClick(e, "home")}
+              className="nav-link active"
+            >
+              Home
+            </a>
+
+            {/* DROPDOWN MENU */}
+            <div className="nav-dropdown">
+              <button
+                className="nav-link dropdown-toggle"
+                onClick={() => setShowMenuDropdown(!showMenuDropdown)}
+              >
+                Menu ▼
+              </button>
+              {showMenuDropdown && (
+                <div className="dropdown-menu">
+                  {menuList.map((category) => (
+                    <button
+                      key={category}
+                      className="dropdown-item"
+                      onClick={() => handleFilterClick(category)}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <a
+              href="/"
+              onClick={(e) => handleNavClick(e, "about")}
+              className="nav-link"
+            >
+              About
+            </a>
+
+            <a
+              href="/"
+              onClick={(e) => handleNavClick(e, "contact")}
+              className="nav-link"
+            >
+              Contact
+            </a>
           </nav>
 
           {/* RIGHT - BUTTONS */}

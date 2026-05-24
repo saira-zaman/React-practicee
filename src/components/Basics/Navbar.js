@@ -1,21 +1,16 @@
 import React from "react";
 
-const Navbar = ({ filterItem, menuList = [] }) => {
+const Navbar = ({ search, onSearchChange }) => {
   return (
-    <nav className="navbar-filter">
-      <div className="filter-container">
-        <h3 className="filter-label">Filter by Category:</h3>
-        <div className="filter-buttons-group">
-          {menuList.map((curElem) => (
-            <button
-              key={curElem}
-              className="filter-btn-category"
-              onClick={() => filterItem(curElem)}
-            >
-              {curElem}
-            </button>
-          ))}
-        </div>
+    <nav className="navbar-search">
+      <div className="search-bar-container">
+        <input
+          type="text"
+          placeholder="🔍 Search food..."
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+          className="search-bar-input"
+        />
       </div>
     </nav>
   );

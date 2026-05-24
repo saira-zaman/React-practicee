@@ -7,6 +7,8 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
 import Toast from "./Toast";
+import About from "./About";
+import Contact from "./Contact";
 
 const uniqueList = [
   ...new Set(
@@ -76,32 +78,37 @@ const Restaurant = () => {
 
   return (
     <>
-      {/* HEADER */}
+      {/* HEADER WITH NAVIGATION */}
       <Header
         user={user}
         onLogin={handleLogin}
         onLogout={handleLogout}
-      />
-
-      {/* FILTER NAVBAR */}
-      <Navbar
-        filterItem={filterItem}
         menuList={menuList}
+        onFilterChange={filterItem}
       />
 
-      {/* SEARCH BAR */}
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="🔍 Search food..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="search-bar-improved"
-        />
-      </div>
+      {/* SEARCH NAVBAR */}
+      <Navbar
+        search={search}
+        onSearchChange={(value) => setSearch(value)}
+      />
 
-      {/* MENU CARDS */}
-      <MenuCard menuData={filteredData} addToCart={addToCart} />
+      {/* HOME SECTION - MENU */}
+      <section id="home" className="menu-section">
+        <div className="menu-header">
+          <h2>Explore Our Menu</h2>
+          <p>Premium dishes crafted by our expert chefs</p>
+        </div>
+
+        {/* MENU CARDS */}
+        <MenuCard menuData={filteredData} addToCart={addToCart} />
+      </section>
+
+      {/* ABOUT SECTION */}
+      <About />
+
+      {/* CONTACT SECTION */}
+      <Contact />
 
       {/* CART */}
       <Cart cart={cart} setCart={setCart} />
