@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./style.css";
 import Menu from "./menuAPI.js";
 import MenuCard from "./MenuCard";
+import Header from "./Header";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
 import Toast from "./Toast";
@@ -74,13 +76,17 @@ const Restaurant = () => {
 
   return (
     <>
-      {/* NAVBAR */}
-      <Navbar
-        filterItem={filterItem}
-        menuList={menuList}
+      {/* HEADER */}
+      <Header
         user={user}
         onLogin={handleLogin}
         onLogout={handleLogout}
+      />
+
+      {/* FILTER NAVBAR */}
+      <Navbar
+        filterItem={filterItem}
+        menuList={menuList}
       />
 
       {/* SEARCH BAR */}
@@ -99,6 +105,9 @@ const Restaurant = () => {
 
       {/* CART */}
       <Cart cart={cart} setCart={setCart} />
+
+      {/* FOOTER */}
+      <Footer />
 
       {/* TOAST NOTIFICATION */}
       {showToast && (
