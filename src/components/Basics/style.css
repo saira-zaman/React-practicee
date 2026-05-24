@@ -4,18 +4,32 @@
 
 /* ROOT VARIABLES */
 :root {
-  --primary-gold: #d4af37;
-  --dark: #1a1a1a;
-  --light-bg: #f8f9fa;
-  --white: #ffffff;
-  --text-gray: #666;
-  --light-gray: #f0f0f0;
-  --success: #10ac84;
-  --danger: #ff6b6b;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.15);
+  /* Primary branding */
+  --primary-gold: #d4af37; /* signature gold */
+  --primary-contrast: #2b2f3a; /* deep slate for contrast */
+
+  /* Secondary accents */
+  --accent-warm: #e76f51; /* warm terracotta accent */
+  --accent-cool: #4aa3a3; /* soft teal accent for freshness */
+
+  /* Background / surfaces */
+  --cream: #fbf7f0; /* soft cream warm background */
+  --light-bg: #f6f7f9; /* subtle cool page background */
+  --surface: #ffffff;
+
+  /* Text */
+  --dark: #0f1724; /* deeper charcoal for headings */
+  --text-gray: #6b7280; /* refined medium gray for body text */
+  --muted: #9ca3af;
+
+  /* Utilities */
+  --light-gray: #eceff3;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --transition: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-sm: 0 4px 12px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 10px 30px rgba(16, 24, 40, 0.08);
+  --shadow-lg: 0 20px 60px rgba(16, 24, 40, 0.12);
 }
 
 /* RESET */
